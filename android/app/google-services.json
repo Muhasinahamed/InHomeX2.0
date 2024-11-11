@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "51450695913",
+    "project_id": "inhomex-0203",
+    "storage_bucket": "inhomex-0203.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51450695913:android:427b1a14f88f29da90e078",
+        "android_client_info": {
+          "package_name": "com.example.inhomex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51450695913-5qls9s5npjjp045kct5ioessaf1ncnb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVp-92U4FNPyAsi7QYx0mJzhg0E_PRdrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51450695913-5qls9s5npjjp045kct5ioessaf1ncnb3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51450695913-r7p2h745e8liavilssf3cmd69r5htcbe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.inhomex"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
