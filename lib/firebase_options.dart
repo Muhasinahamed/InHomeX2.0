@@ -48,6 +48,7 @@ class DefaultFirebaseOptions {
     authDomain: 'inhomex-0203.firebaseapp.com',
     storageBucket: 'inhomex-0203.firebasestorage.app',
     measurementId: 'G-WCZ5QZW6KW',
+    databaseURL: "https://inhomex-0203-default-rtdb.firebaseio.com",
   );
 
   static const FirebaseOptions android = FirebaseOptions(

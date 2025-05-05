@@ -1,0 +1,14 @@
+platform :ios, '13.0'
+
+target 'Runner' do
+  use_frameworks!
+
+  # Firebase dependencies
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'  # Add any other Firebase services you need
+  
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
