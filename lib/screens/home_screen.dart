@@ -24,6 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
   };
 
   int _totalRelays = 0;
+  double _temperature = 0.0;
+  double _humidity = 0.0;
+  int _airQuality = 0;
+
   Map<String, dynamic> _devices = {};
   Map<String, dynamic> _relays = {};
 
@@ -57,6 +61,23 @@ class _HomeScreenState extends State<HomeScreen> {
               key.toString(),
               Map<String, dynamic>.from(value),
             ));
+      });
+    });
+    _database.child('sensorData/temperature').onValue.listen((event) {
+      setState(() {
+        _temperature = (event.snapshot.value as num?)?.toDouble() ?? 0.0;
+      });
+    });
+
+    _database.child('sensorData/humidity').onValue.listen((event) {
+      setState(() {
+        _humidity = (event.snapshot.value as num?)?.toDouble() ?? 0.0;
+      });
+    });
+
+    _database.child('sensorData/air_quality').onValue.listen((event) {
+      setState(() {
+        _airQuality = (event.snapshot.value as int?) ?? 0;
       });
     });
   }
@@ -306,16 +327,19 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 statuscard(
                     icon: Icons.thermostat,
-                    value: '22°',
-                    iconColor: _getTemperatureColor(22)),
+                    value: '${_temperature.toStringAsFixed(1)}°',
+                    iconColor: _getTemperatureColor(_temperature)),
                 const SizedBox(width: 16),
                 statuscard(
                     icon: Icons.water_drop,
-                    value: '40%',
+                    value: '${_humidity.toStringAsFixed(0)}%',
                     iconColor: Colors.blue),
                 const SizedBox(width: 16),
                 statuscard(
-                    icon: Icons.air, value: '135', iconColor: Colors.grey),
+                  icon: Icons.air,
+                  value: '$_airQuality',
+                  iconColor: _getAirQualityColor(_airQuality),
+                ),
               ],
             ),
           ),
@@ -385,6 +409,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Color _getTemperatureColor(double temperature) {
     if (temperature < 20) return Colors.blue;
     if (temperature <= 30) return Colors.green;
+    return Colors.red;
+  }
+
+  Color _getAirQualityColor(int aqi) {
+    if (aqi <= 50) return Colors.green;
+    if (aqi <= 100) return Colors.yellow;
+    if (aqi <= 150) return Colors.orange;
     return Colors.red;
   }
 }
