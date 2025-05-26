@@ -2,68 +2,43 @@ import 'package:flutter/material.dart';
 
 class DeviceControlCard extends StatelessWidget {
   final IconData icon;
-  final bool isSelected;
+  final bool isActive;
   final String label;
   final VoidCallback onPressed;
 
   const DeviceControlCard({
     super.key,
     required this.icon,
-    required this.isSelected,
+    required this.isActive,
     required this.label,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Column(
-        children: [
-          Container(
-            width: 140,
-            height: 100,
-            decoration: BoxDecoration(
-              color: isSelected ? Colors.green.shade200 : Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  blurRadius: 5,
-                  spreadRadius: 2,
-                ),
-              ],
+    return Card(
+      elevation: 4,
+      color: isActive ? Colors.white : null,
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon,
+                size: 60, color: isActive ? Colors.deepPurple : Colors.grey),
+            const SizedBox(height: 20),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: isActive ? Colors.deepPurple : Colors.grey,
+              ),
+              textAlign: TextAlign.center,
             ),
-            child: Stack(
-              children: [
-                Positioned(
-                  left: 15,
-                  top: 5,
-                  child: Icon(icon, size: 50, color: Colors.black87),
-                ),
-                Positioned(
-                  bottom: 10,
-                  left: 15,
-                  child: Text(
-                    label,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ),
-                if (isSelected)
-                  Positioned(
-                    top: 8,
-                    right: 8,
-                    child: Icon(Icons.check_circle, color: Colors.green),
-                  ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
